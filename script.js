@@ -45,7 +45,7 @@ class Circle {
         }
     }
     update(){
-        if(this.x > canvas.width - this.radius || this.x < 0 + this.radius){
+        if(this.x > canvas.width - this.radius || this.x < this.radius){
            this.dx = -(this.dx);
            this.x += this.dx;
         } else {
@@ -65,11 +65,12 @@ const circlesArray = [];
 const makeCircles = () => {
     circlesArray.length = 0;
     for(let i = 0; i < 800; i++){
-        const x = Math.floor(Math.random() * window.innerWidth) + 10;
-        const y = Math.floor(Math.random() * window.innerHeight) + 10;
         const rad = Math.floor(Math.random() * 5) + 5;
-        const dx = Math.floor(Math.random() * 2) + 1;
-        const dy = Math.floor(Math.random() * 2) + 1;
+        const x = Math.floor(Math.random() * (canvas.width-50)) + rad;
+        const y = Math.floor(Math.random() * (canvas.height-50)) + rad;
+        
+        const dx = (Math.floor(Math.random() * 2) + 1) * Math.pow(-1, Math.round(Math.random()));
+        const dy = (Math.floor(Math.random() * 2) + 1) * Math.pow(-1, Math.round(Math.random()));
         circlesArray.push(new Circle(x,y,rad,dx,dy));
     }
 }
