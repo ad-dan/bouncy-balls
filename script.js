@@ -11,16 +11,25 @@ const mouse = {
     x: undefined,
     y: undefined
 }
+canvas.addEventListener('click', ()=> {
+    currentScheme = currentScheme ? 0: 1;
+
+    colorsArray = colors[currentScheme];
+    circlesArray.forEach(circle => circle.kuler(colorsArray[Math.floor(Math.random() * 5)]));
+
+});
 const growthRadius = 50;
 canvas.addEventListener('mousemove',(event)=>{
     mouse.x = event.x;
     mouse.y = event.y;
 })
-const colorsArray = ['#56B9D0','#FEFEFE','#FBBA42','#F24C27', '#F8E71D'];
+const colors = [['#56B9D0','#FEFEFE','#FBBA42','#F24C27', '#F8E71D'], ['#2E112D','#540032', '#820333','#C9283E','#F0433A']]
+let currentScheme = Math.round(Math.random());
+let colorsArray = colors[currentScheme];
 
 class Circle {
     constructor(x,y,radius,dx,dy) {
-        this.color = colorsArray[Math.floor(Math.random() * 4)];
+        this.color = colorsArray[Math.floor(Math.random() * 5)];
         this.x = x;
         this.y = y;
         this.radius = radius;
@@ -58,6 +67,11 @@ class Circle {
             this.y += this.dy;
 
         }
+    }
+    kuler(color){
+        
+        this.color = color;
+        
     }
 }
 
