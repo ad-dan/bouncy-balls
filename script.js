@@ -13,13 +13,8 @@ const mouse = {
 }
 canvas.addEventListener('click', ()=> {
 
-    function getNum (prev){
-        let curr=Math.floor(Math.random()*colors.length);
-        if(curr===prev) return getNum(prev);
-        return curr;
-    }
 
-    currentScheme = getNum(currentScheme);
+    currentScheme = (currentScheme + 1) % colors.length;
 
     colorsArray = colors[currentScheme];
     circlesArray.forEach(circle => circle.kuler(colorsArray[Math.floor(Math.random() * 5)]));
@@ -30,8 +25,10 @@ canvas.addEventListener('mousemove',(event)=>{
     mouse.x = event.x;
     mouse.y = event.y;
 })
-const colors = [['#56B9D0','#FEFEFE','#FBBA42','#F24C27', '#F8E71D'], ['#2E112D','#540032', '#820333','#C9283E','#F0433A'],['#05668D','#028090','#00A896','#02C39A', '#F0F3BD'],['#1A535C','#4ECDC4','#F7FFF7','#FF6B6B', '#FFE66D'],['#9C89B8','#F0A6CA','#EFC3E6','#F0E6EF', '#B8BEDD']] 
-let currentScheme = Math.round(Math.random());
+
+const colors = [['#56B9D0','#FEFEFE','#FBBA42','#F24C27', '#F8E71D'], ['#2E112D','#540032', '#820333','#C9283E','#F0433A'], ['#E63946', '#F1FAEE', '#A8DADC', '#457B9D', '#1D3557'],['#537A77','#6A9C98', '#8AB8B4','#58B8B0','#07B0A2'],['#05668D','#028090','#00A896','#02C39A', '#F0F3BD'],['#1A535C','#4ECDC4','#F7FFF7','#FF6B6B', '#FFE66D'],['#9C89B8','#F0A6CA','#EFC3E6','#F0E6EF', '#B8BEDD']];
+let currentScheme = Math.round(Math.random() * colors.length);
+
 let colorsArray = colors[currentScheme];
 
 class Circle {
