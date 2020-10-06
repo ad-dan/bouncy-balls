@@ -12,7 +12,7 @@ const mouse = {
     y: undefined
 }
 canvas.addEventListener('click', ()=> {
-    currentScheme = currentScheme ? 0: 1;
+    currentScheme = (currentScheme + 1) % colors.length;
 
     colorsArray = colors[currentScheme];
     circlesArray.forEach(circle => circle.kuler(colorsArray[Math.floor(Math.random() * 5)]));
@@ -23,8 +23,8 @@ canvas.addEventListener('mousemove',(event)=>{
     mouse.x = event.x;
     mouse.y = event.y;
 })
-const colors = [['#56B9D0','#FEFEFE','#FBBA42','#F24C27', '#F8E71D'], ['#2E112D','#540032', '#820333','#C9283E','#F0433A']]
-let currentScheme = Math.round(Math.random());
+const colors = [['#56B9D0','#FEFEFE','#FBBA42','#F24C27', '#F8E71D'], ['#2E112D','#540032', '#820333','#C9283E','#F0433A'], ['#E63946', '#F1FAEE', '#A8DADC', '#457B9D', '#1D3557']];
+let currentScheme = Math.round(Math.random() * 2);
 let colorsArray = colors[currentScheme];
 
 class Circle {
